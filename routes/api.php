@@ -58,11 +58,12 @@ Route::get('/products', function () {
     return new ProductCollection($products); // kembalikan product collection
 });
 
-// Route::get('/products-paging', function (Request $request) {
-//     $page = $request->get('page', 1);
-//     $products = \App\Models\Product::paginate(perPage: 2, page: $page);
-//     return new ProductCollection($products);
-// });
+// product pagging
+Route::get('/products-paging', function (Request $request) {
+    $page = $request->get('page', 1); // ambil page dari request page ke-1
+    $products = \App\Models\Product::paginate(perPage: 2, page: $page); // gunakan product paginate, per page 2 saja, dan page yang akan di ambil dari parameter $products
+    return new ProductCollection($products); // gunakan product collection
+});
 
 // Route::get('/products-debug/{id}', function ($id) {
 //     $product = \App\Models\Product::find($id);

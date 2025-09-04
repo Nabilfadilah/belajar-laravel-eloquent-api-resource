@@ -57,16 +57,21 @@ class ProductTest extends TestCase
         }
     }
 
-    // public function testProductPaging()
-    // {
-    //     $this->seed([CategorySeeder::class, ProductSeeder::class]);
-    //     $response = $this->get('/api/products-paging')
-    //         ->assertStatus(200);
+    // pagination
+    public function testProductPaging()
+    {
+        // ambil seeder
+        $this->seed([CategorySeeder::class, ProductSeeder::class]);
 
-    //     self::assertNotNull($response->json("links"));
-    //     self::assertNotNull($response->json("meta"));
-    //     self::assertNotNull($response->json("data"));
-    // }
+        // ambil get pat products-paging
+        $response = $this->get('/api/products-paging')
+            ->assertStatus(200); // status 200
+
+        // harus ada link, meta, data di browsernya
+        self::assertNotNull($response->json("links"));
+        self::assertNotNull($response->json("meta"));
+        self::assertNotNull($response->json("data"));
+    }
 
     // public function testAdditional()
     // {
