@@ -41,20 +41,23 @@ Route::get('/categories-custom', function () {
 });
 
 
-Route::get('/products/{id}', function ($id) {
-    $products = \App\Models\Product::find($id); // ambil data berdasarkan id
-    return (new ProductResource($products));
-});
 // Route::get('/products/{id}', function ($id) {
-//     $product = \App\Models\Product::find($id); // ambil data berdasarkan id
-//     $product->load("category"); // muat data model category 
-//     return (new ProductResource($product)) // kembalikan data 
-//         ->response() // response
-//         ->header("X-Powered-By", "Fadilah Stations"); // header
+//     $products = \App\Models\Product::find($id); // ambil data berdasarkan id
+//     return (new ProductResource($products));
 // });
+
+// update
+Route::get('/products/{id}', function ($id) {
+    $product = \App\Models\Product::find($id); // ambil data berdasarkan id
+    $product->load("category"); // muat data model category 
+    return (new ProductResource($product)) // kembalikan data 
+        ->response() // response
+        ->header("X-Powered-By", "Fadilah Stations"); // header
+});
 
 // akan di wrap dalam data, nanti data array nya
 Route::get('/products', function () {
+    // $products = \App\Models\Product::all(); // ambil product dengan category one to many
     $products = \App\Models\Product::with('category')->get(); // ambil product dengan category one to many
     return new ProductCollection($products); // kembalikan product collection
 });

@@ -23,10 +23,10 @@ class ProductResource extends JsonResource
             // 'id, dll' = key
             "id" => $this->id, // $this = manggil model, ->id = manggil kolom id nya
             "name" => $this->name,
-            "category" => new CategorySimpleResource($this->category), // nested ke CategorySimpleResource
-            // "category" => new CategorySimpleResource($this->whenLoaded('category')), // nested ke CategorySimpleResource
+            // "category" => new CategorySimpleResource($this->category), // nested ke CategorySimpleResource
+            "category" => new CategorySimpleResource($this->whenLoaded('category')), // setiap kali pannggil data product, maka otomatis data category akan di load 
             "price" => $this->price,
-            // "is_expensive" => $this->when($this->price > 1000, true, false),
+            "is_expensive" => $this->when($this->price > 1000, true, false), // kalau price lebih dari seribu maka true, kalau bukan false
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at,
         ];
