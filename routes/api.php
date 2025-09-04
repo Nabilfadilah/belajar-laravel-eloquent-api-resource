@@ -51,6 +51,7 @@ Route::get('/products/{id}', function ($id) {
     $product = \App\Models\Product::find($id); // ambil data berdasarkan id
     $product->load("category"); // muat data model category 
     return (new ProductResource($product)) // kembalikan data 
+        // response method    
         ->response() // response
         ->header("X-Powered-By", "Fadilah Stations"); // header
 });

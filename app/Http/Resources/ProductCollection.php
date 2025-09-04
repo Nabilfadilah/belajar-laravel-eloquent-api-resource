@@ -24,8 +24,11 @@ class ProductCollection extends ResourceCollection
         ];
     }
 
+    // resource response
+    // memanipulasi data responsenya
     public function withResponse(Request $request, JsonResponse $response)
     {
-        $response->header("X-Powered-By", "Programmer Zaman Now");
+        // kita tambahkan header
+        $response->header("X-Powered-By", "Fadilah Stations");
     }
 }

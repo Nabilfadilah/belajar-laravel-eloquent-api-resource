@@ -20,7 +20,7 @@ class ProductTest extends TestCase
 
         $this->get("/api/products/$product->id") // get api path
             ->assertStatus(200) // status response
-            // ->assertHeader("X-Powered-By", "Fadilah Stations") // header
+            ->assertHeader("X-Powered-By", "Fadilah Stations") // header
             ->assertJson([ // data yang sesuai dengan yang di resource
                 "value" => [
                     "name" => $product->name,
@@ -45,7 +45,7 @@ class ProductTest extends TestCase
         // ambil get pat product response
         $response = $this->get('/api/products')
             ->assertStatus(200) // status
-            ->assertHeader("X-Powered-By", "Programmer Zaman Now"); // header
+            ->assertHeader("X-Powered-By", "Fadilah Stations"); // header
 
         $names = $response->json("data.*.name"); // ambil semua name dari json data dan name
         // iterasi data sampe 5
