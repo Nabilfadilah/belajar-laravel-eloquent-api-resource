@@ -13,6 +13,7 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
+        // seeder name category 
         Category::create([
             "name" => "Food"
         ]);

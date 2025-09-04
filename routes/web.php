@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get("/categories/{id}", function ($id) {
+    $category = Category::findOrFail($id); // tekukan/gagal model id 
+    // ini sebuah resource, laravel tau!!
+    return new CategoryResource($category); // return kan categoryResource nya, modelnya category
 });
