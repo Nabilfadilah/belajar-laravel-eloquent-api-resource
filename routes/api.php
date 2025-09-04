@@ -2,6 +2,7 @@
 
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,32 @@ Route::get('/categories-custom', function () {
     $categories = Category::all(); // ambil semua data category
     return new CategoryCollection($categories); // static method collection
 });
+
+
+Route::get('/products/{id}', function ($id) {
+    $products = \App\Models\Product::find($id); // ambil data berdasarkan id
+    return (new ProductResource($products));
+});
+// Route::get('/products/{id}', function ($id) {
+//     $product = \App\Models\Product::find($id); // ambil data berdasarkan id
+//     $product->load("category"); // muat data model category 
+//     return (new ProductResource($product)) // kembalikan data 
+//         ->response() // response
+//         ->header("X-Powered-By", "Fadilah Stations"); // header
+// });
+
+// Route::get('/products', function () {
+//     $products = \App\Models\Product::with('category')->get();
+//     return new ProductCollection($products);
+// });
+
+// Route::get('/products-paging', function (Request $request) {
+//     $page = $request->get('page', 1);
+//     $products = \App\Models\Product::paginate(perPage: 2, page: $page);
+//     return new ProductCollection($products);
+// });
+
+// Route::get('/products-debug/{id}', function ($id) {
+//     $product = \App\Models\Product::find($id);
+//     return new ProductDebugResource($product);
+// });
