@@ -3,6 +3,7 @@
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductCollection;
+use App\Http\Resources\ProductDebugResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -65,7 +66,8 @@ Route::get('/products-paging', function (Request $request) {
     return new ProductCollection($products); // gunakan product collection
 });
 
-// Route::get('/products-debug/{id}', function ($id) {
-//     $product = \App\Models\Product::find($id);
-//     return new ProductDebugResource($product);
-// });
+// additional metadata 
+Route::get('/products-debug/{id}', function ($id) {
+    $product = \App\Models\Product::find($id); // ambil data product berdasarkan id
+    return new ProductDebugResource($product); // retrun ProductDebugResource dari product
+});
