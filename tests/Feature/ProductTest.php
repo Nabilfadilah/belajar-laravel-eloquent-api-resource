@@ -36,21 +36,26 @@ class ProductTest extends TestCase
             ]);
     }
 
-    // public function testCollectionWrap()
-    // {
-    //     $this->seed([CategorySeeder::class, ProductSeeder::class]);
-    //     $response = $this->get('/api/products')
-    //         ->assertStatus(200)
-    //         ->assertHeader("X-Powered-By", "Programmer Zaman Now");
+    // Data wrap collection
+    public function testCollectionWrap()
+    {
+        // ambil seeder
+        $this->seed([CategorySeeder::class, ProductSeeder::class]);
 
-    //     $names = $response->json("data.*.name");
-    //     for ($i = 0; $i < 5; $i++) {
-    //         self::assertContains("Product $i of Food", $names);
-    //     }
-    //     for ($i = 0; $i < 5; $i++) {
-    //         self::assertContains("Product $i of Gadget", $names);
-    //     }
-    // }
+        // ambil get pat product response
+        $response = $this->get('/api/products')
+            ->assertStatus(200) // status
+            ->assertHeader("X-Powered-By", "Programmer Zaman Now"); // header
+
+        $names = $response->json("data.*.name"); // ambil semua name dari json data dan name
+        // iterasi data sampe 5
+        for ($i = 0; $i < 5; $i++) {
+            self::assertContains("Product $i of Food", $names); // harus ada dalam product name
+        }
+        for ($i = 0; $i < 5; $i++) {
+            self::assertContains("Product $i of Gadget", $names);
+        }
+    }
 
     // public function testProductPaging()
     // {

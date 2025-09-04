@@ -2,6 +2,7 @@
 
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -51,10 +52,11 @@ Route::get('/products/{id}', function ($id) {
 //         ->header("X-Powered-By", "Fadilah Stations"); // header
 // });
 
-// Route::get('/products', function () {
-//     $products = \App\Models\Product::with('category')->get();
-//     return new ProductCollection($products);
-// });
+// akan di wrap dalam data, nanti data array nya
+Route::get('/products', function () {
+    $products = \App\Models\Product::with('category')->get(); // ambil product dengan category one to many
+    return new ProductCollection($products); // kembalikan product collection
+});
 
 // Route::get('/products-paging', function (Request $request) {
 //     $page = $request->get('page', 1);
