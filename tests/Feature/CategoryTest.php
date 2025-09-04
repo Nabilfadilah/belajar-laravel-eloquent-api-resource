@@ -30,31 +30,34 @@ class CategoryTest extends TestCase
             ]);
     }
 
-    // public function testResourceCollection()
-    // {
-    //     $this->seed([CategorySeeder::class]);
+    // Resource Collection
+    public function testResourceCollection()
+    {
+        // ambil seeder
+        $this->seed([CategorySeeder::class]);
 
-    //     $categories = Category::all();
+        $categories = Category::all(); // ambil semua data categort
 
-    //     $this->get("/api/categories")
-    //         ->assertStatus(200)
-    //         ->assertJson([
-    //             'data' => [
-    //                 [
-    //                     'id' => $categories[0]->id,
-    //                     'name' => $categories[0]->name,
-    //                     'created_at' => $categories[0]->created_at->toJSON(),
-    //                     'updated_at' => $categories[0]->updated_at->toJSON(),
-    //                 ],
-    //                 [
-    //                     'id' => $categories[1]->id,
-    //                     'name' => $categories[1]->name,
-    //                     'created_at' => $categories[1]->created_at->toJSON(),
-    //                     'updated_at' => $categories[1]->updated_at->toJSON(),
-    //                 ]
-    //             ]
-    //         ]);
-    // }
+        $this->get("/api/categories") // path
+            ->assertStatus(200) // response 200
+            ->assertJson([ // json array
+                // hasilnya harus ada 2 data 
+                'data' => [
+                    [
+                        'id' => $categories[0]->id, // ini ambil category dari index array 0
+                        'name' => $categories[0]->name,
+                        'created_at' => $categories[0]->created_at->toJSON(),
+                        'updated_at' => $categories[0]->updated_at->toJSON(),
+                    ],
+                    [
+                        'id' => $categories[1]->id, // ini ambil category dari index 1
+                        'name' => $categories[1]->name,
+                        'created_at' => $categories[1]->created_at->toJSON(),
+                        'updated_at' => $categories[1]->updated_at->toJSON(),
+                    ]
+                ]
+            ]);
+    }
 
     // public function testResourceCollectionCustom()
     // {

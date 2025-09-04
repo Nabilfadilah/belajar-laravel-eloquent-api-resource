@@ -25,3 +25,8 @@ Route::get("/categories/{id}", function ($id) {
     // ini sebuah resource, laravel tau!!
     return new CategoryResource($category); // return kan categoryResource nya, modelnya category
 });
+
+Route::get('/categories', function () {
+    $categories = Category::all(); // ambil semua data category
+    return CategoryResource::collection($categories); // static method collection
+});
